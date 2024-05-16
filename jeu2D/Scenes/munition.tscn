@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Script/munition.gd" id="1_pogaq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6p4be"]
-radius = 20.0998
+radius = 17.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_c5l11"]
 
 [node name="munition" type="RigidBody2D"]
-mass = 0.01
+mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_pogaq")
 
@@ -17,8 +17,8 @@ shape = SubResource("CircleShape2D_6p4be")
 one_way_collision_margin = 8.6
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(-4.76837e-07, -9.53674e-07)
-scale = Vector2(40.017, 38.415)
+position = Vector2(-1.49292, 1.10375)
+scale = Vector2(37.0278, 36.2075)
 mesh = SubResource("SphereMesh_c5l11")
 
 [node name="Timer" type="Timer" parent="."]

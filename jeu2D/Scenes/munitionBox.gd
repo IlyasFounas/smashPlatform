@@ -12,4 +12,15 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	print(22)
+	pass
+
+
+func _on_area_2d_body_entered(body):
+	
+	if body.get_name() == "user":
+		queue_free()
+		if body.get_parent().compteurMunitionBox > 0:
+			body.get_parent().compteurMunitionBox = body.get_parent().compteurMunitionBox - 1
+		body.compteurMunition = 0
+		
+	

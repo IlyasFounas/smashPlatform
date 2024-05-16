@@ -15,7 +15,7 @@ scale = Vector2(0.478271, 0.518663)
 texture = ExtResource("5_07v4x")
 
 [node name="user" parent="." instance=ExtResource("2_838jt")]
-position = Vector2(496, 141)
+position = Vector2(477, 832)
 
 [node name="background" parent="." instance=ExtResource("3_1adwe")]
 position = Vector2(961, 903)
@@ -50,3 +50,12 @@ position = Vector2(1597, 617)
 
 [node name="obstacles9" parent="." instance=ExtResource("4_n2qfp")]
 position = Vector2(1631, 617)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="user2" parent="." instance=ExtResource("2_838jt")]
+position = Vector2(832, 854)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

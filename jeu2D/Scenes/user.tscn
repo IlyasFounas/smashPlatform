@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://d36l4q0tt4tql"]
+[gd_scene load_steps=5 format=3 uid="uid://d36l4q0tt4tql"]
 
 [ext_resource type="Texture2D" uid="uid://duc1gfypi6wkw" path="res://Ressources/mario.png" id="1_e6lut"]
 [ext_resource type="Script" path="res://Script/user.gd" id="1_xl0ga"]
+[ext_resource type="Texture2D" uid="uid://dsmfcua6pxbus" path="res://Ressources/marioJump.png" id="3_hnin0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bguo5"]
-radius = 15.0
-height = 40.0
+radius = 17.0
+height = 50.0
 
 [node name="user" type="CharacterBody2D"]
 script = ExtResource("1_xl0ga")
@@ -14,6 +15,10 @@ script = ExtResource("1_xl0ga")
 shape = SubResource("CapsuleShape2D_bguo5")
 
 [node name="Mario" type="Sprite2D" parent="."]
-position = Vector2(0.999999, -0.999998)
-scale = Vector2(0.0845324, 0.0918491)
+scale = Vector2(0.104616, 0.118917)
 texture = ExtResource("1_e6lut")
+
+[node name="MarioJump" type="Sprite2D" parent="."]
+position = Vector2(-2, -3)
+scale = Vector2(0.193232, 0.221111)
+texture = ExtResource("3_hnin0")

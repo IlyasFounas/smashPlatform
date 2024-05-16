@@ -21,11 +21,16 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_z"):
 			velocity.y = JUMP_VELOCITY
 			compteurJump = compteurJump + 1
+
 			
 	#when the user is on a surface/background/enemie he gain 3 jumpd 
 	if is_on_floor(): 
 		compteurJump = 0
-		
+		get_child(2).visible = false
+		get_child(1).visible = true
+	if !is_on_floor(): 
+		get_child(1).visible = false
+		get_child(2).visible = true
 	#the user go down if he press s
 	if Input.is_action_just_pressed('ui_s'):
 		velocity.y += gravity * 1.2
@@ -41,11 +46,7 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	
-
 	move_and_slide()
-	
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -53,6 +54,7 @@ func _input(event):
 			if compteurMunition < 6:
 				var munition = MUNITION.instantiate()
 				munition.position = position
+				#munition.position.x = munition.position.x + 10
 				get_parent().add_child(munition)
 				compteurMunition = compteurMunition + 1
 				

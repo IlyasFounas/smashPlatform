@@ -13,13 +13,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time sincd e the previous frame.
 func _process(delta):
-	if compteurMunitionBox < 20:
-		var muntion_box = MUNITION_BOX.instantiate()
-		muntion_box.position = Vector2(rng.randf_range(0, get_viewport_rect().size.x),rng.randf_range(0, get_viewport_rect().size.y))
-		add_child(muntion_box)
-		compteurMunitionBox = compteurMunitionBox +1
+	pass
 	#if compteur < 20:
 	#	var obstacle = OBSTACLE.instantiate()
 	#	obstacle.position = Vector2(rng.randf_range(0, get_viewport_rect().size.x),rng.randf_range(0, get_viewport_rect().size.y))
 	#	add_child(obstacle)
 	#compteur = compteur + 1
+
+
+func _on_timer_timeout():
+	if compteurMunitionBox < 6:
+		var muntion_box = MUNITION_BOX.instantiate()
+		muntion_box.position = Vector2(rng.randf_range(300, 900),rng.randf_range(0, get_viewport_rect().size.y))
+		add_child(muntion_box)
+		compteurMunitionBox = compteurMunitionBox +1
