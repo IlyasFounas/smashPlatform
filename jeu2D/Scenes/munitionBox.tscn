@@ -1,22 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dolkr6xsvkd61"]
+[gd_scene load_steps=4 format=3 uid="uid://dolkr6xsvkd61"]
 
 [ext_resource type="Texture2D" uid="uid://cpevdwpd4qjj2" path="res://Ressources/munitionBoxSansBg.png" id="1_fmgm2"]
+[ext_resource type="Script" path="res://Scenes/munitionBox.gd" id="1_n8737"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e48y4"]
-size = Vector2(10.5311, 16.51)
+size = Vector2(13.7541, 20.4867)
 
 [node name="munitionBox" type="Node2D"]
+script = ExtResource("1_n8737")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2.04842, 0.837919)
+position = Vector2(2, 1)
 rotation = 0.561996
-scale = Vector2(1, 1)
 skew = 0.363028
 shape = SubResource("RectangleShape2D_e48y4")
 
 [node name="MunitionBoxSansBg" type="Sprite2D" parent="."]
-position = Vector2(2.0625, 1.6875)
-scale = Vector2(0.134868, 0.144079)
+position = Vector2(3, 2)
+scale = Vector2(0.195019, 0.196711)
 texture = ExtResource("1_fmgm2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
