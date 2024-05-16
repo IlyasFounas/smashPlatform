@@ -5,15 +5,20 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var MARIO_JUMP = preload("res://Ressources/marioJump.png")
 @onready var MUNITION = preload("res://Scenes/munition.tscn")
+@onready var SHIELD = preload("res://Scenes/shield.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var compteurJump = 0
+var compteurMunition = 0
 
 func _physics_process(delta):
 	#the user can jump 3 time in row if he want
 	if compteurJump < 2:
 		# Handle Jump.
 		if Input.is_action_just_pressed("ui_accept"):
+			velocity.y = JUMP_VELOCITY
+			compteurJump = compteurJump + 1
+		if Input.is_action_just_pressed("ui_z"):
 			velocity.y = JUMP_VELOCITY
 			compteurJump = compteurJump + 1
 			
@@ -43,13 +48,21 @@ func _physics_process(delta):
 	
 	
 func _input(event):
-	if event is InputEventKey:
-		#switch case des touche clavier
+	if event is InputEventMouseButton:
+		if event.button_index == 1 && event.pressed == true:
+			if compteurMunition < 6:
+				var munition = MUNITION.instantiate()
+				munition.position = position
+				get_parent().add_child(munition)
+				compteurMunition = compteurMunition + 1
+				
+	elif event is InputEventKey:
 		match event.keycode:
-			65:
+			70:
 				# F
-				if !event.is_pressed():
-					var munition = MUNITION.instantiate()
-					munition.position = position
-					get_parent().add_child(munition)
+				if event.is_pressed():
+					var shield = SHIELD.instantiate()
+					shield.position = position
+					get_parent().add_child(shield)
+			
 
