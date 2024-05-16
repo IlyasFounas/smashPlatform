@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqre3do7t4btb"]
+
+[ext_resource type="Script" path="res://Script/worldEnv.gd" id="1_o2fme"]
+[ext_resource type="PackedScene" uid="uid://d36l4q0tt4tql" path="res://Scenes/user.tscn" id="2_838jt"]
+[ext_resource type="PackedScene" uid="uid://dud3b8l2ru1fn" path="res://Scenes/background.tscn" id="3_1adwe"]
+
+[node name="worldEnv" type="Node2D"]
+script = ExtResource("1_o2fme")
+
+[node name="user" parent="." instance=ExtResource("2_838jt")]
+position = Vector2(538, 173)
+
+[node name="background" parent="." instance=ExtResource("3_1adwe")]
+position = Vector2(961, 903)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://onxphjaakqnu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6p4be"]
+radius = 20.0998
+
+[sub_resource type="SphereMesh" id="SphereMesh_c5l11"]
+
+[node name="munition" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6p4be")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-4.76837e-07, -9.53674e-07)
+scale = Vector2(40.017, 38.415)
+mesh = SubResource("SphereMesh_c5l11")
