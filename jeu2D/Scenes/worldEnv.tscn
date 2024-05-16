@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqre3do7t4btb"]
+[gd_scene load_steps=7 format=3 uid="uid://bqre3do7t4btb"]
 
 [ext_resource type="Script" path="res://Script/worldEnv.gd" id="1_o2fme"]
 [ext_resource type="PackedScene" uid="uid://d36l4q0tt4tql" path="res://Scenes/user.tscn" id="2_838jt"]
 [ext_resource type="PackedScene" uid="uid://dud3b8l2ru1fn" path="res://Scenes/background.tscn" id="3_1adwe"]
 [ext_resource type="PackedScene" uid="uid://de0fqw0y83umw" path="res://Scenes/obstacles.tscn" id="4_n2qfp"]
 [ext_resource type="Texture2D" uid="uid://b6q5478r8p1ys" path="res://Ressources/bg2.jpg" id="5_07v4x"]
+[ext_resource type="PackedScene" uid="uid://ytw6g88e0kpw" path="res://Scenes/screen_mario.tscn" id="6_rolmm"]
 
 [node name="worldEnv" type="Node2D"]
 script = ExtResource("1_o2fme")
@@ -15,7 +16,7 @@ scale = Vector2(0.478271, 0.518663)
 texture = ExtResource("5_07v4x")
 
 [node name="user" parent="." instance=ExtResource("2_838jt")]
-position = Vector2(477, 832)
+position = Vector2(348, 535)
 
 [node name="background" parent="." instance=ExtResource("3_1adwe")]
 position = Vector2(961, 903)
@@ -55,7 +56,7 @@ position = Vector2(1631, 617)
 wait_time = 3.0
 autostart = true
 
-[node name="user2" parent="." instance=ExtResource("2_838jt")]
-position = Vector2(832, 854)
+[node name="screen_mario" parent="." instance=ExtResource("6_rolmm")]
+position = Vector2(473, 1014)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

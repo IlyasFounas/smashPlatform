@@ -5,20 +5,54 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var MARIO_JUMP = preload("res://Ressources/marioJump.png")
 @onready var MUNITION = preload("res://Scenes/munition.tscn")
+@onready var MUNITION_LEFT = preload("res://Scenes/munition_left.tscn")
 @onready var SHIELD = preload("res://Scenes/shield.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var compteurJump = 0
 var compteurMunition = 0
+var userLeft = false
 
 func _physics_process(delta):
 	#the user can jump 3 time in row if he want
 	if compteurJump < 2:
 		# Handle Jump.
 		if Input.is_action_just_pressed("ui_accept"):
+			if !Input.is_action_just_pressed("ui_q"):
+				if userLeft :
+					get_child(1).visible = false
+					get_child(2).visible = false
+					get_child(3).visible = true
+					get_child(4).visible = false
+				else : 
+					get_child(1).visible = false
+					get_child(2).visible = true
+					get_child(3).visible = false
+					get_child(4).visible = false
+			elif !Input.is_action_just_pressed("ui_d"):
+				if userLeft :
+					get_child(1).visible = false
+					get_child(2).visible = false
+					get_child(3).visible = true
+					get_child(4).visible = false
+				else : 
+					get_child(1).visible = false
+					get_child(2).visible = true
+					get_child(3).visible = false
+					get_child(4).visible = false
 			velocity.y = JUMP_VELOCITY
 			compteurJump = compteurJump + 1
 		if Input.is_action_just_pressed("ui_z"):
+			if !Input.is_action_just_pressed("ui_q"):
+				get_child(1).visible = false
+				get_child(2).visible = false
+				get_child(3).visible = true
+				get_child(4).visible = false
+			elif !Input.is_action_just_pressed("ui_d"):
+				get_child(1).visible = false
+				get_child(2).visible = false
+				get_child(3).visible = true
+				get_child(4).visible = false
 			velocity.y = JUMP_VELOCITY
 			compteurJump = compteurJump + 1
 
@@ -26,11 +60,7 @@ func _physics_process(delta):
 	#when the user is on a surface/background/enemie he gain 3 jumpd 
 	if is_on_floor(): 
 		compteurJump = 0
-		get_child(2).visible = false
-		get_child(1).visible = true
-	if !is_on_floor(): 
-		get_child(1).visible = false
-		get_child(2).visible = true
+
 	#the user go down if he press s
 	if Input.is_action_just_pressed('ui_s'):
 		velocity.y += gravity * 1.2
@@ -48,15 +78,47 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 	
+	if Input.is_action_just_pressed('ui_q'):
+		userLeft = true
+		if is_on_floor():
+			get_child(1).visible = false
+			get_child(2).visible = false
+			get_child(3).visible = false
+			get_child(4).visible = true
+		if !is_on_floor(): 
+			get_child(1).visible = false
+			get_child(2).visible = false
+			get_child(3).visible = true
+			get_child(4).visible = false
+			
+	
+	if Input.is_action_just_pressed('ui_d'):
+		userLeft = false
+		if is_on_floor():
+			get_child(1).visible = true
+			get_child(2).visible = false
+			get_child(3).visible = false
+			get_child(4).visible = false
+		if !is_on_floor(): 
+			get_child(1).visible = false
+			get_child(2).visible = true
+			get_child(3).visible = false
+			get_child(4).visible = false
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 && event.pressed == true:
 			if compteurMunition < 6:
-				var munition = MUNITION.instantiate()
-				munition.position = position
-				#munition.position.x = munition.position.x + 10
-				get_parent().add_child(munition)
-				compteurMunition = compteurMunition + 1
+				if userLeft :
+					var munition_left = MUNITION_LEFT.instantiate()
+					munition_left.position = position
+					get_parent().add_child(munition_left)
+					compteurMunition = compteurMunition + 1
+				else :
+					var munition = MUNITION.instantiate()
+					munition.position = position
+					get_parent().add_child(munition)
+					compteurMunition = compteurMunition + 1
 				
 	elif event is InputEventKey:
 		match event.keycode:
