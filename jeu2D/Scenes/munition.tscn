@@ -17,7 +17,6 @@ shape = SubResource("CircleShape2D_6p4be")
 one_way_collision_margin = 8.6
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(-1.49292, 1.10375)
 scale = Vector2(37.0278, 36.2075)
 mesh = SubResource("SphereMesh_c5l11")
 

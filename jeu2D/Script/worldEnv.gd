@@ -24,6 +24,6 @@ func _process(delta):
 func _on_timer_timeout():
 	if compteurMunitionBox < 6:
 		var muntion_box = MUNITION_BOX.instantiate()
-		muntion_box.position = Vector2(rng.randf_range(300, 900),rng.randf_range(0, get_viewport_rect().size.y))
+		muntion_box.position = Vector2(rng.randf_range(400, 800),rng.randf_range(0, get_viewport_rect().size.y))
 		add_child(muntion_box)
 		compteurMunitionBox = compteurMunitionBox +1

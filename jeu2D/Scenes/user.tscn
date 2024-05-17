@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d36l4q0tt4tql"]
+[gd_scene load_steps=8 format=3 uid="uid://d36l4q0tt4tql"]
 
 [ext_resource type="Texture2D" uid="uid://duc1gfypi6wkw" path="res://Ressources/mario.png" id="1_e6lut"]
 [ext_resource type="Script" path="res://Script/user.gd" id="1_xl0ga"]
 [ext_resource type="Texture2D" uid="uid://dsmfcua6pxbus" path="res://Ressources/marioJump.png" id="3_hnin0"]
 [ext_resource type="Texture2D" uid="uid://dogg6ma0dd15p" path="res://Ressources/marioJumpLeft.png" id="4_tkl2v"]
 [ext_resource type="Texture2D" uid="uid://djarfbe7hbe3d" path="res://Ressources/marioLeft.png" id="5_4xxfh"]
+[ext_resource type="Texture2D" uid="uid://r6kkatn1jnl5" path="res://Ressources/marioDown.png" id="6_hoi8w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bguo5"]
 radius = 18.0
@@ -31,3 +32,8 @@ texture = ExtResource("4_tkl2v")
 [node name="MarioLeft" type="Sprite2D" parent="."]
 scale = Vector2(0.117, 0.117)
 texture = ExtResource("5_4xxfh")
+
+[node name="MarioDown" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.176856, 0.224444)
+texture = ExtResource("6_hoi8w")
