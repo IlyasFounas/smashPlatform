@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyn1rxaclvxkg"]
+
+[ext_resource type="Script" path="res://Script/multiplayer.gd" id="1_pguo6"]
+
+[node name="multiplayer" type="Node2D"]
+script = ExtResource("1_pguo6")
+
+[node name="host" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 11.0
+offset_right = 61.0
+offset_bottom = 42.0
+text = "host
+"
+
+[node name="join" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 81.0
+text = "join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/user.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="join" to="." method="_on_join_pressed"]

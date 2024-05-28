@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://dieqpf8mntl2v"]
+
+[ext_resource type="Script" path="res://Scenes/user2.gd" id="1_n2k13"]
+[ext_resource type="Texture2D" uid="uid://dsmfcua6pxbus" path="res://Ressources/marioJump.png" id="3_61vwg"]
+[ext_resource type="Texture2D" uid="uid://djarfbe7hbe3d" path="res://Ressources/marioLeft.png" id="3_m1ref"]
+[ext_resource type="Texture2D" uid="uid://dogg6ma0dd15p" path="res://Ressources/marioJumpLeft.png" id="4_efdwj"]
+[ext_resource type="Texture2D" uid="uid://duc1gfypi6wkw" path="res://Ressources/mario.png" id="4_scjkh"]
+[ext_resource type="Texture2D" uid="uid://cjb7lejriwybt" path="res://Ressources/1-by-1-px-transparent.png" id="7_ik5dw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hixux"]
+size = Vector2(42, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8663"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ik5dw")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m1ref")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_scjkh")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekqts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_efdwj")
+}],
+"loop": true,
+"name": &"mouvement_up_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_61vwg")
+}],
+"loop": true,
+"name": &"mouvement_up_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ik5dw")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="user2" type="CharacterBody2D"]
+script = ExtResource("1_n2k13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_hixux")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.122878, 0.110949)
+sprite_frames = SubResource("SpriteFrames_v8663")
+animation = &"walk_right"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.0625, 0.437502)
+scale = Vector2(0.22762, 0.226111)
+sprite_frames = SubResource("SpriteFrames_ekqts")
+animation = &"mouvement_up_left"

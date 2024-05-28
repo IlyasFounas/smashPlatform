@@ -2,19 +2,18 @@
 
 [ext_resource type="Script" path="res://Script/munition.gd" id="1_pogaq"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_c5l11"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6p4be"]
 radius = 17.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_c5l11"]
-
 [node name="munition" type="RigidBody2D"]
-mass = 10.0
+collision_layer = 3
+mass = 10000.0
 gravity_scale = 0.0
+max_contacts_reported = 1000
+contact_monitor = true
 script = ExtResource("1_pogaq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_6p4be")
-one_way_collision_margin = 8.6
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(37.0278, 36.2075)
@@ -24,4 +23,9 @@ mesh = SubResource("SphereMesh_c5l11")
 wait_time = 5.0
 autostart = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6p4be")
+one_way_collision_margin = 8.6
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

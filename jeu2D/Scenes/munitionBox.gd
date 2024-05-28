@@ -22,5 +22,10 @@ func _on_area_2d_body_entered(body):
 		if body.get_parent().compteurMunitionBox > 0:
 			body.get_parent().compteurMunitionBox = body.get_parent().compteurMunitionBox - 1
 		body.compteurMunition = 0
+	if body.get_name() == "user2":
+		queue_free()
+		if body.get_parent().compteurMunitionBox > 0:
+			body.get_parent().compteurMunitionBox = body.get_parent().compteurMunitionBox - 1
+		body.compteurMunition = 0
 		
 	

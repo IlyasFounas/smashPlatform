@@ -1,13 +1,15 @@
 extends RigidBody2D
 
+var initialVelocity = Vector2.ZERO
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	#translate(Vector2(1,0)*15)
 func _physics_process(delta):
-	translate(Vector2(1,0)*15)
+	linear_velocity = initialVelocity*1000
 
 func _on_timer_timeout():
 	queue_free()
+
+
+func _on_body_entered(body):
+	if body.get_name().contains("user"):
+		body.compteurLife = body.compteurLife + 10
+	queue_free()	

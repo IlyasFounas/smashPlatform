@@ -5,7 +5,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var MARIO_JUMP = preload("res://Ressources/marioJump.png")
 @onready var MUNITION = preload("res://Scenes/munition.tscn")
-@onready var MUNITION_LEFT = preload("res://Scenes/munition_left.tscn")
 @onready var SHIELD = preload("res://Scenes/shield.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -13,6 +12,7 @@ var compteurJump = 0
 var compteurMunition = 0
 var userLeft = false
 var life = 3
+var compteurLife = 0
 
 func _on_ready():
 	get_child(1).visible = false
@@ -22,7 +22,8 @@ func _on_ready():
 	get_child(5).visible = false
 
 func _physics_process(delta):
-	if life != 0:
+	get_parent().get_child(15).get_child(3).get_child(0).text = str(compteurLife)
+	if life > 0:
 		if position.x > 1920:
 			life = life -1 
 			position = Vector2(300,300)
@@ -150,16 +151,17 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 && event.pressed == true:
 			if compteurMunition < 6:
+				var munition = MUNITION.instantiate()
 				if userLeft :
-					var munition_left = MUNITION_LEFT.instantiate()
-					munition_left.position = position
-					#munition_left.position.x = munition_left.position.x - 2
-					get_parent().add_child(munition_left)
+					munition.position = position 
+					munition.position.x = munition.position.x - 50
+					munition.initialVelocity = Vector2(-1,0)
+					get_parent().add_child(munition)
 					compteurMunition = compteurMunition + 1
 				else :
-					var munition = MUNITION.instantiate()
 					munition.position = position
-					#munition.position.x = munition.position.x + 2
+					munition.position.x = munition.position.x + 50
+					munition.initialVelocity = Vector2(1,0)
 					get_parent().add_child(munition)
 					compteurMunition = compteurMunition + 1
 				
