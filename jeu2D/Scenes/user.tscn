@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d36l4q0tt4tql"]
+[gd_scene load_steps=9 format=3 uid="uid://d36l4q0tt4tql"]
 
 [ext_resource type="Texture2D" uid="uid://duc1gfypi6wkw" path="res://Ressources/mario.png" id="1_e6lut"]
 [ext_resource type="Script" path="res://Script/user.gd" id="1_xl0ga"]
@@ -10,6 +10,14 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bguo5"]
 radius = 18.0
 height = 56.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rx7i5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
 
 [node name="user" type="CharacterBody2D"]
 script = ExtResource("1_xl0ga")
@@ -37,3 +45,6 @@ texture = ExtResource("5_4xxfh")
 rotation = 3.14159
 scale = Vector2(0.176856, 0.224444)
 texture = ExtResource("6_hoi8w")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rx7i5")

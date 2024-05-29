@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqre3do7t4btb"]
+[gd_scene load_steps=7 format=3 uid="uid://bqre3do7t4btb"]
 
 [ext_resource type="Script" path="res://Script/worldEnv.gd" id="1_o2fme"]
 [ext_resource type="PackedScene" uid="uid://d36l4q0tt4tql" path="res://Scenes/user.tscn" id="2_838jt"]
@@ -6,18 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://de0fqw0y83umw" path="res://Scenes/obstacles.tscn" id="4_n2qfp"]
 [ext_resource type="Texture2D" uid="uid://b6q5478r8p1ys" path="res://Ressources/bg2.jpg" id="5_07v4x"]
 [ext_resource type="PackedScene" uid="uid://ytw6g88e0kpw" path="res://Scenes/screen_mario.tscn" id="6_rolmm"]
-[ext_resource type="PackedScene" uid="uid://dieqpf8mntl2v" path="res://Scenes/user2.tscn" id="7_cjt5q"]
 
 [node name="worldEnv" type="Node2D"]
 script = ExtResource("1_o2fme")
+player_scene = ExtResource("2_838jt")
 
 [node name="Bg2" type="Sprite2D" parent="."]
 position = Vector2(984.5, 606.5)
 scale = Vector2(0.478271, 0.518663)
 texture = ExtResource("5_07v4x")
-
-[node name="user" parent="." instance=ExtResource("2_838jt")]
-position = Vector2(348, 535)
 
 [node name="background" parent="." instance=ExtResource("3_1adwe")]
 position = Vector2(961, 903)
@@ -57,10 +54,31 @@ position = Vector2(1631, 617)
 wait_time = 3.0
 autostart = true
 
-[node name="user2" parent="." instance=ExtResource("7_cjt5q")]
-position = Vector2(1024, 648)
-
 [node name="screen_mario" parent="." instance=ExtResource("6_rolmm")]
 position = Vector2(473, 1014)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Host" type="Button" parent="CanvasLayer"]
+offset_left = 183.0
+offset_top = 104.0
+offset_right = 227.0
+offset_bottom = 135.0
+text = "Host
+"
+
+[node name="Join" type="Button" parent="CanvasLayer"]
+offset_left = 187.0
+offset_top = 148.0
+offset_right = 225.0
+offset_bottom = 179.0
+text = "Join
+"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/user.tscn", "res://Scenes/munition.tscn", "res://Scenes/shield.tscn")
+spawn_path = NodePath("..")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]
